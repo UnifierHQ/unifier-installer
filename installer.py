@@ -906,7 +906,8 @@ async def on_ready():
         print('Please add the bot to your server using the following URL:')
         print(f'https://discord.com/api/oauth2/authorize?client_id={bot.user.id}&scope=bot')
     else:
-        await install()
+        if not installing:
+            await install()
 
 @bot.event
 async def on_guild_join(guild):
