@@ -794,6 +794,7 @@ async def install():
             status(os.system('cp "' + os.getcwd() + '/install/config.json" "' + os.getcwd() + '/config.json"'))
             status(os.system('cp "' + os.getcwd() + '/install/requirements.txt" "' + os.getcwd() + '/requirements.txt"'))
             status(os.system('cp "' + os.getcwd() + '/install/plugins/system.json" "' + os.getcwd() + '/plugins/system.json"'))
+            status(os.system('cp "' + os.getcwd() + '/install/emojis/base.json" "' + os.getcwd() + '/emojis/base.json"'))
             for file in os.listdir(os.getcwd() + '/install/cogs'):
                 status(os.system('cp "' + os.getcwd() + '/install/cogs/'+file + '" "' + os.getcwd() + '/cogs/'+file+'"'))
             for file in os.listdir(os.getcwd() + '/install/utils'):
