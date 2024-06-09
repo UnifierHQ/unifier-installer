@@ -788,6 +788,7 @@ async def install():
                 os.mkdir('plugins')
                 os.mkdir('cogs')
                 os.mkdir('utils')
+                os.mkdir('emojis')
             except:
                 pass
             status(os.system('cp "' + os.getcwd() + '/install/unifier.py" "' + os.getcwd() + '/unifier.py"'))
