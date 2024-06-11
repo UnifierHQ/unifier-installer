@@ -811,7 +811,7 @@ async def install():
             set_key(dotenv_file, "TOKEN", token)
             if new['release'] >= 46:
                 # v2.0.0 and newer use nextcord, so novus is no longer needed
-                status(os.system(python + ' -m pip uninstall novus'))
+                status(os.system(python + ' -m pip uninstall -y novus'))
         except:
             embed.title = 'Install failed'
             embed.description = 'Could not install Unifier. Please review the error logs, then restart the installer.'
