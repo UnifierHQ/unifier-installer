@@ -755,7 +755,7 @@ async def install():
             sys.exit(1)
 
         embed.title = 'Installing Unifier...'
-        embed.description = limit(3) + '\n\nDownloading and installing from remote...'
+        embed.description = limit(3) + '\n\nDownloading Unifier from remote...'
         await rootmsg.edit(embed=embed)
         os.system('rm -rf ' + os.getcwd() + '/install')
         await bot.loop.run_in_executor(
@@ -772,6 +772,9 @@ async def install():
             embed.colour = 0xff0000
             await rootmsg.edit(embed=embed)
             sys.exit(1)
+        embed.title = 'Installing Unifier...'
+        embed.description = limit(3) + '\n\nDownloading and installing dependencies...\nThis step can take a while.'
+        await rootmsg.edit(embed=embed)
         x = open('install/requirements.txt')
         newdeps = x.read().split('\n')
         x.close()
@@ -784,6 +787,9 @@ async def install():
             await rootmsg.edit(embed=embed)
             sys.exit(1)
         try:
+            embed.title = 'Installing Unifier...'
+            embed.description = limit(4) + '\n\nMoving Unifier files into place...'
+            await rootmsg.edit(embed=embed)
             try:
                 os.mkdir('plugins')
                 os.mkdir('cogs')
@@ -923,6 +929,8 @@ async def on_guild_join(guild):
 
 try:
     bot.run(token)
+except SystemExit:
+    pass
 except:
     traceback.print_exc()
     print('ERROR: Bot could not boot!')
