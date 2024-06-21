@@ -720,7 +720,12 @@ async def install():
             discord.ui.Button(
                 label='Unifier',
                 style=discord.ButtonStyle.blurple,
-                custom_id='unifier'
+                custom_id='unifier-full-main'
+            ),
+            discord.ui.Button(
+                label='Unifier Nightly',
+                style=discord.ButtonStyle.gray,
+                custom_id='unifier-full-dev'
             )
         )
     )
@@ -734,14 +739,15 @@ async def install():
 
     version = interaction.custom_id
     embed.clear_fields()
-    if version=='unifier':
+    if version.startswith('unifier-full'):
+        branch = version.replace('unifier-full-','',1)
         embed.title = 'Finding Unifier...'
         embed.description = limit(2) + '\n\nChecking newest version from remote'
         os.system('rm -rf ' + os.getcwd() + '/install_check')
         await interaction.response.edit_message(embed=embed,components=None)
         await bot.loop.run_in_executor(
             None, lambda: os.system(
-                'git clone --branch main https://github.com/UnifierHQ/unifier-version "' + os.getcwd() + '/install_check"'
+                'git clone --branch '+branch+' https://github.com/UnifierHQ/unifier-version "' + os.getcwd() + '/install_check"'
             )
         )
         try:
