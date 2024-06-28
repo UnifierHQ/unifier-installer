@@ -52,8 +52,7 @@ except:
 cgroup = Path('/proc/self/cgroup')
 if Path('/.dockerenv').is_file() or cgroup.is_file() and 'docker' in cgroup.read_text():
     print('NOTE: It looks like you may be using Pterodactyl panel to install!')
-    print('If this is the case, you can enter your ID and token inputs into "Type a command".')
-    print('')
+    print('If this is the case, you can enter your ID and token inputs into "Type a command".\n')
 
 print('[Owner user ID]')
 print('The bot needs your user ID to know that you\'ll be installing the bot.')
@@ -67,7 +66,7 @@ while True:
     except:
         print('Incorrect ID, try again!')
 
-print('[Bot token]')
+print('\n[Bot token]')
 print('The bot needs a token to start up. This is like your bot\'s password.')
 print('If you don\'t have a bot already, go to https://discord.com/developers, then create an Application.')
 print('Once you\'ve done so, go to "Bot", then press "Reset Token".')
@@ -785,7 +784,7 @@ async def install():
         newdeps = x.read().split('\n')
         x.close()
         try:
-            status(os.system(python+' -m pip install --no-dependencies ' + ' '.join(newdeps)))
+            await bot.loop.run_in_executor(None, lambda: status(os.system(python+' -m pip install --no-dependencies ' + ' '.join(newdeps))))
         except:
             embed.title = 'Install failed'
             embed.description = 'Could not install dependencies. Please review the error logs, then restart the installer.'
