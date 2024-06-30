@@ -75,7 +75,7 @@ print('WARNING: DO NOT SHARE YOUR TOKEN WITH ANYONE, NOT EVEN US!')
 token = getpass.getpass(prompt='Token: ')
 
 installing = False
-data = {}
+data = {'owner': owner}
 
 bot = commands.Bot(command_prefix='u!',intents=discord.Intents.all())
 
