@@ -75,7 +75,7 @@ print('WARNING: DO NOT SHARE YOUR TOKEN WITH ANYONE, NOT EVEN US!')
 token = getpass.getpass(prompt='Token: ')
 
 installing = False
-data = {'owner': owner}
+data = {}
 
 bot = commands.Bot(command_prefix='u!',intents=discord.Intents.all())
 
@@ -813,6 +813,7 @@ async def install():
                 status(os.system('cp "' + os.getcwd() + '/install/utils/'+file + '" "' + os.getcwd() + '/utils/'+file+'"'))
             with open('config.json', 'r') as file:
                 cfg = json.load(file)
+            data.update({'owner': owner})
             cfg.update(data)
             with open('config.json', 'w') as file:
                 json.dump(cfg, file, indent=4)
